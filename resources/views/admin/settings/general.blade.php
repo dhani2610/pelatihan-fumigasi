@@ -57,6 +57,64 @@
                 </button>
             </form>
         </div>
-    </div>
 
+        <!-- XML SITEMAP GENERATOR CARD -->
+        <div class="admin-card" style="margin-top: 24px; border-left: 4px solid #10b981;">
+            <div class="admin-card-header">
+                <div>
+                    <h3 class="admin-card-title" style="display: flex; align-items: center; gap: 8px;">
+                        <i class="bi bi-diagram-3-fill" style="color: #10b981;"></i>
+                        XML Sitemap Generator (Google Search Console & SEO)
+                    </h3>
+                    <p style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">
+                        Fitur pembuatan file <code>public/sitemap.xml</code> otomatis untuk di-submit ke Google Search Console agar seluruh halaman website terindeks di Google.
+                    </p>
+                </div>
+            </div>
+
+            @php
+                $sitemapPath = public_path('sitemap.xml');
+                $exists = file_exists($sitemapPath);
+            @endphp
+
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+                <div style="display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 0.86rem;">
+                    <strong style="color: #334155;">Status Sitemap:</strong>
+                    <div>
+                        @if($exists)
+                            <span style="color: #059669; font-weight: 700; background: #ecfdf5; padding: 2px 10px; border-radius: 12px; border: 1px solid #a7f3d0;">
+                                <i class="bi bi-check-circle-fill"></i> File Tersedia (public/sitemap.xml)
+                            </span>
+                        @else
+                            <span style="color: #dc2626; font-weight: 700; background: #fef2f2; padding: 2px 10px; border-radius: 12px; border: 1px solid #fecaca;">
+                                <i class="bi bi-x-circle-fill"></i> Belum Digenerate
+                            </span>
+                        @endif
+                    </div>
+
+                    @if($exists)
+                        <strong style="color: #334155;">Terakhir Diperbarui:</strong>
+                        <div style="color: #64748b;">{{ date('d M Y H:i:s', filemtime($sitemapPath)) }} WIB</div>
+
+                        <strong style="color: #334155;">Ukuran File:</strong>
+                        <div style="color: #64748b;">{{ round(filesize($sitemapPath) / 1024, 2) }} KB</div>
+
+                        <strong style="color: #334155;">URL Sitemap:</strong>
+                        <div>
+                            <a href="{{ url('/sitemap.xml') }}" target="_blank" style="color: #0284c7; font-weight: 600; text-decoration: none;">
+                                {{ url('/sitemap.xml') }} <i class="bi bi-box-arrow-up-right" style="font-size: 0.75rem;"></i>
+                            </a>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <form action="{{ route('admin.sitemap.generate') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn-admin-primary" style="font-size: 0.9rem; padding: 10px 20px;">
+                    <i class="bi bi-arrow-repeat"></i> {{ $exists ? 'Generate Ulang XML Sitemap' : 'Generate XML Sitemap Sekarang' }}
+                </button>
+            </form>
+        </div>
+    </div>
 @endsection

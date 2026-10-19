@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="Ugg5DzPD9tH9pOWxZ0FJuo-rDrZcmrunBIQG2mEgQbU" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6F4C8M04Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-B6F4C8M04Z');
+    </script>
+
     <title>@yield('title', 'Pelatihan & Sertifikasi Fumigasi Indonesia | Standar Karantina & ISPM 15')</title>
     <meta name="description" content="@yield('meta_description', 'Lembaga informasi, bimbingan teknis, dan sertifikasi kompetensi fumigasi resmi berstandar Badan Karantina Indonesia, AFAS, dan ISPM 15.')">
     <link rel="preconnect" href="https://fonts.googleapis.com">
